@@ -16,7 +16,7 @@ pipeline {
 
     	stage('Clone Github Repo') {
       		steps {
-            	git branch: 'todo-app-updated', url: 'https://github.com/Isaac-Ayanda/php-todo.git'
+            	git branch: 'main', url: 'https://github.com/Isaac-Ayanda/todo-app-php.git'
       		}
     	}
 
