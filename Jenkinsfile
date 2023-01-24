@@ -1,4 +1,4 @@
-pipeline {
+pipelines {
     agent any
 	
 	stages {
@@ -12,7 +12,7 @@ pipeline {
 
     	stage('Clone Github Repo') {
       		steps {
-            	git branch: 'main', url: 'https://github.com/Isaac-Ayanda/todo-app-php.git'
+            	git branch: 'main', credentialsId:'b741c689-0d77-4526-a19c-e23aaaa7c517',   url: 'https://github.com/Isaac-Ayanda/todo-app-php.git'
       		}
     	}
 
