@@ -2,10 +2,7 @@ pipeline {
     agent any
 
 	environment {
-		TAG = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
-        max = 20
-        random_num = "${Math.abs(new Random().nextInt(max+1))}"
-		docker_password = credentials('Call2sing')
+	
 	}
 	
 	stages {
@@ -26,6 +23,7 @@ pipeline {
 		stage ('Build Docker Image') {
 			steps {
 				script {
+					sh 'docker login -u zik777 -p Call2sing?'
 					sh 'docker build -t zik777/todo_app:${BRANCH_NAME}-${BUILD_NUMBER} .'
 				}
 			}
@@ -34,7 +32,7 @@ pipeline {
 		stage ('Push Image To Docker Hub') {
 			steps {
 				script {
-					sh 'docker login -u zik777 -p ${docker_password}'
+					sh 'docker login -u zik777 -p Call2sing?'
 
 					sh 'docker push zik777/todo_app:${BRANCH_NAME}-${BUILD_NUMBER}'
 				}
