@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker Image') {
       		steps {
             	script{
-			sh 'sudo docker build -t zik777/todo_app_proj20:${BRANCH_NAME}_${BUILD_NUMBER} .'
+			sh 'sudo docker build -t zik777/todo_app_proj20:${BRANCH_NAME}-${BUILD_NUMBER} .'
                 }
       		}
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Creating docker container') {
             steps {
                 script {
-                    sh 'sudo docker run -d --name=todo_app:${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:80 zik777/todo_app-proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker run -d --name=todo_app:${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:80 zik777/todo_app_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         } 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    sh 'sudo docker push zik777/todo_app-proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker push zik777/todo_app_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         }       	
@@ -50,7 +50,7 @@ pipeline {
                 script {
                     sh 'sudo docker stop todo_app:${BRANCH_NAME}-${BUILD_NUMBER}'
                     sh 'sudo docker rm todo_app:${BRANCH_NAME}-${BUILD_NUMBER}'
-                    sh 'sudo docker rmi zik777/todo_app-proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker rmi zik777/todo_app_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         }
