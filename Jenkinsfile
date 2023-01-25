@@ -19,7 +19,7 @@ pipeline {
 
     	stage('Clone Github Repo') {
       		steps {
-            	 git branch 'master', git credentialsId 'b741c689-0d77-4526-a19c-e23aaaa7c517', url 'https://github.com/Isaac-Ayanda/todo-app-php.git'
+            	 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'b741c689-0d77-4526-a19c-e23aaaa7c517', url: 'https://github.com/Isaac-Ayanda/todo-app-php.git']])
       		}
     	}
 
