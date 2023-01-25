@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        docker_password = credentials('Call2sing?')
-    }
-	
-	stages {
+    stages {
 		stage("Initial cleanup") {
 			steps {
 				dir("${WORKSPACE}") {
@@ -24,7 +20,7 @@ pipeline {
       		steps {
             	script{
                     sh 'echo "Build Stage"'
-                    sh " docker login -u zik777 -p ${docker_password}"
+                    sh " docker login -u zik777 -p Call2sing?"
                     sh " docker build -t zik777/todo_proj20:0.0.2 ."
                 }
       		}
