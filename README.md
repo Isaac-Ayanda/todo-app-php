@@ -1,6 +1,6 @@
 # Laravel Quickstart - Basic
 
-## Quick Installation
+## Quick Installation Guide
 
     git clone https://github.com/laravel/quickstart-basic quickstart
 
