@@ -31,7 +31,7 @@ pipeline {
         stage('Creating docker container') {
             steps {
                 script {
-                    sh 'sudo docker run -d --name todo-app:${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:8000 zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker run -d --name todo-app:${BUILD_NUMBER} -p 8000:80 zik777/todo_proj20:${BUILD_NUMBER}'
                 }
             }
         } 
@@ -48,8 +48,8 @@ pipeline {
 		stage ('Clean Up') {
             steps {
                 script {
-                    sh 'sudo docker stop todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
-                    sh 'sudo docker rm todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker stop todo-app:${BUILD_NUMBER}'
+                    sh 'sudo docker rm todo-app:${BUILD_NUMBER}'
                     sh 'sudo docker rmi zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
