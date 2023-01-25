@@ -31,7 +31,7 @@ pipeline {
         stage('Creating docker container') {
             steps {
                 script {
-                    sh 'sudo docker run -d --name=todo_app.${BRANCH_NAME}-${BUILD_NUMBER} -p 8039:80 zik777/todo_app_proj20.${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker run -d --name=todo_app.${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:80 zik777/todo_app_proj20.${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         } 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh "sleep 60"
-                    sh "curl -I 52.23.195.247:8040"
+                    sh "curl -I 52.23.195.247:8000"
                 }
             }
         }
