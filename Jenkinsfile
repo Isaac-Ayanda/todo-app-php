@@ -31,7 +31,7 @@ pipeline {
         stage('Creating docker container') {
             steps {
                 script {
-                    sh 'sudo docker run -d --name=todo_app.${BRANCH_NAME}-${BUILD_NUMBER} -p 8001:80 zik777/todo_app_proj20.${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker run -d --name=todo_app.${BRANCH_NAME}-${BUILD_NUMBER} -p 8060:80 zik777/todo_app_proj20.${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         } 
