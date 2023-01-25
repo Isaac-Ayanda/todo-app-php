@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker Image') {
       		steps {
             	script{
-                        sh 'docker build -t zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER} .'
+                        sh 'sudo docker build -t zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER} .'
                 }
       		}
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Creating docker container') {
             steps {
                 script {
-                    sh 'docker run -d --name todo-app:${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:8000 zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker run -d --name todo-app:${BRANCH_NAME}-${BUILD_NUMBER} -p 8000:8000 zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         } 
@@ -39,8 +39,8 @@ pipeline {
         stage('Publish to Docker Hub') {
             steps {
                 script {
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                    sh 'docker push zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    sh 'sudo docker push zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         }       	
@@ -48,9 +48,9 @@ pipeline {
 		stage ('Clean Up') {
             steps {
                 script {
-                    sh 'docker stop todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
-                    sh 'docker rm todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
-                    sh 'docker rmi zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker stop todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker rm todo-app:${BRANCH_NAME}-${BUILD_NUMBER}'
+                    sh 'sudo docker rmi zik777/todo_proj20:${BRANCH_NAME}-${BUILD_NUMBER}'
                 }
             }
         }
@@ -58,7 +58,7 @@ pipeline {
         stage ('logout Docker') {
             steps {
                 script {
-                    sh 'docker logout'
+                    sh 'sudo docker logout'
                 }
             }
         }
